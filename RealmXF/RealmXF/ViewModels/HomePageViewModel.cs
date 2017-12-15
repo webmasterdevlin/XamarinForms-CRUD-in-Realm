@@ -15,28 +15,20 @@ namespace RealmXF.ViewModels
     internal class HomePageViewModel : INotifyPropertyChanged
     {
         private readonly Realm _realmDb;
-        private List<Recipe> recipes;
-        public ObservableCollection<Recipe> _recipes;
+        private ObservableCollection<Recipe> _observableRecipes;
+
         public ICommand AddCommand { get; }
         public ICommand UpdateCommand { get; }
         public ICommand DeleteCommand { get; }
-        
+
         public ObservableCollection<Recipe> Recipes
         {
-            get => _recipes;
+            get => _observableRecipes;
             set
             {
-                _recipes = value;
+                _observableRecipes = value;
                 OnPropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public HomePageViewModel()
@@ -45,13 +37,13 @@ namespace RealmXF.ViewModels
             UpdateCommand = new Command(Update);
             DeleteCommand = new Command(Delete);
             _realmDb = Realm.GetInstance();
-            recipes = _realmDb.All<Recipe>().ToList();
+            List<Recipe> recipes = _realmDb.All<Recipe>().ToList();
             Recipes = new ObservableCollection<Recipe>(recipes);
         }
 
         private void Add()
         {
-            var recipe = new Recipe
+            Recipe recipe = new Recipe
             {
                 Name = $"Recipe {DateTime.UtcNow.Ticks}",
                 Id = _realmDb.All<Recipe>().Count() + 1
@@ -63,21 +55,29 @@ namespace RealmXF.ViewModels
 
         private void Update()
         {
-            var i = _realmDb.All<Recipe>().Count() - 1;
-            var recipe = Recipes[i];
-            _realmDb.Write(()=> { _realmDb.Add(recipe, true).Name += $" [update]" ; });
+            int i = _realmDb.All<Recipe>().Count() - 1;
+            Recipe recipe = Recipes[i];
+            _realmDb.Write(() => { _realmDb.Add(recipe, true).Name += " [update]"; });
         }
 
         private void Delete()
         {
-            var i = _realmDb.All<Recipe>().Count() - 1;
-            var recipe = Recipes[i];
-            using (var transact = _realmDb.BeginWrite())
+            int i = _realmDb.All<Recipe>().Count() - 1;
+            Recipe recipe = Recipes[i];
+            using (Transaction transact = _realmDb.BeginWrite())
             {
                 _realmDb.Remove(recipe);
                 transact.Commit();
             }
             Recipes.Remove(recipe);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

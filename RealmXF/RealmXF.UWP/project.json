@@ -1,12 +1,12 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "Newtonsoft.Json": "10.0.3",
-    "Realm": "1.5.0",
-    "Xamarin.Forms": "2.3.4.224"
+    "Realm": "1.6.0",
+    "Xamarin.Forms": "2.4.0.282"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.15063": {}
   },
   "runtimes": {
     "win10-arm": {},

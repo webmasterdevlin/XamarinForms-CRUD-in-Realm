@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:RealmXF.ViewModels;assembly=RealmXF"
              x:Class="RealmXF.Views.HomePage"
              Padding="20">
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button Text="Add" BackgroundColor="Khaki"
+
+        <StackLayout>
+            <StackLayout  Orientation="Horizontal">
+                <Button  Text="Add" BackgroundColor="Khaki"
                     Command="{Binding AddCommand}" />
-            <Button Text="Update" HorizontalOptions="CenterAndExpand"
+                <Button Text="Update" HorizontalOptions="CenterAndExpand"
                     Command="{Binding UpdateCommand}" />
-            <Button Text="Delete" BackgroundColor="Crimson"
+                <Button Text="Delete" BackgroundColor="Crimson"
                     Command="{Binding DeleteCommand}" />
+            </StackLayout>
+            <ListView ItemsSource="{Binding Recipes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-        <ListView ItemsSource="{Binding Recipes}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+
 </ContentPage>

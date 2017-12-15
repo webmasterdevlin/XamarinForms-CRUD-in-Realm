@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmXF.Android", "RealmXF\RealmXF.Android\RealmXF.Android.csproj", "{606302A9-1515-40A7-A3DA-735BBDC98C72}"
 EndProject
@@ -76,6 +76,8 @@ Global
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.AppStore|x86.Build.0 = Release|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.AppStore|x86.Deploy.0 = Release|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|ARM.Build.0 = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|ARM.Deploy.0 = Debug|Any CPU
@@ -89,8 +91,6 @@ Global
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|x64.Build.0 = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|x64.Deploy.0 = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|x86.Build.0 = Debug|Any CPU
-		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Debug|x86.Deploy.0 = Debug|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{606302A9-1515-40A7-A3DA-735BBDC98C72}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -194,8 +194,6 @@ Global
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.AppStore|x86.Build.0 = Release|x86
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.AppStore|x86.Deploy.0 = Release|x86
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|Any CPU.Build.0 = Debug|x86
-		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|ARM.ActiveCfg = Debug|ARM
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|ARM.Build.0 = Debug|ARM
 		{CED7B4CB-81C7-4F82-9ADA-3E5C86A9D407}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -254,5 +252,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32184377-CAB9-438A-8531-5832342CF3F0}
 	EndGlobalSection
 EndGlobal
