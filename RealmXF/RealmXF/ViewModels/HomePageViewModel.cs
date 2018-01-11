@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace RealmXF.ViewModels
 {
-    internal class HomePageViewModel : INotifyPropertyChanged
+    internal class HomePageViewModel : ViewModelBase
     {
         private readonly Realm _realmDb;
         private ObservableCollection<Recipe> _observableRecipes;
@@ -70,14 +70,6 @@ namespace RealmXF.ViewModels
                 transact.Commit();
             }
             Recipes.Remove(recipe);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
