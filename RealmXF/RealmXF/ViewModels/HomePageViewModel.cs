@@ -1,12 +1,9 @@
 ﻿using Realms;
-using RealmXF.Annotations;
 using RealmXF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -17,9 +14,9 @@ namespace RealmXF.ViewModels
         private readonly Realm _realmDb;
         private ObservableCollection<Recipe> _observableRecipes;
 
-        public ICommand AddCommand { get; }
-        public ICommand UpdateCommand { get; }
-        public ICommand DeleteCommand { get; }
+        public ICommand AddCommand => new Command(Add); // Commands are the one you bind in your Xaml
+        public ICommand UpdateCommand => new Command(Update);
+        public ICommand DeleteCommand => new Command(Delete);
 
         public ObservableCollection<Recipe> Recipes
         {
@@ -33,9 +30,6 @@ namespace RealmXF.ViewModels
 
         public HomePageViewModel()
         {
-            AddCommand = new Command(Add);
-            UpdateCommand = new Command(Update);
-            DeleteCommand = new Command(Delete);
             _realmDb = Realm.GetInstance();
             List<Recipe> recipes = _realmDb.All<Recipe>().ToList();
             Recipes = new ObservableCollection<Recipe>(recipes);
@@ -46,7 +40,7 @@ namespace RealmXF.ViewModels
             Recipe recipe = new Recipe
             {
                 Name = $"Recipe {DateTime.UtcNow.Ticks}",
-                Id = _realmDb.All<Recipe>().Count() + 1
+                Id = Guid.NewGuid().ToString()
             };
             _realmDb.Write(() => { _realmDb.Add(recipe); });
 
@@ -55,6 +49,11 @@ namespace RealmXF.ViewModels
 
         private void Update()
         {
+            if (Recipes.Count == 0)
+            {
+                return;
+            }
+
             int i = _realmDb.All<Recipe>().Count() - 1;
             Recipe recipe = Recipes[i];
             _realmDb.Write(() => { _realmDb.Add(recipe, true).Name += " [update]"; });
@@ -62,7 +61,13 @@ namespace RealmXF.ViewModels
 
         private void Delete()
         {
+            if (Recipes.Count == 0)
+            {
+                return;
+            }
+
             int i = _realmDb.All<Recipe>().Count() - 1;
+
             Recipe recipe = Recipes[i];
             using (Transaction transact = _realmDb.BeginWrite())
             {
