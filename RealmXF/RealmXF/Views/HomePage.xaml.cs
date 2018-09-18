@@ -1,5 +1,6 @@
 ﻿using RealmXF.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace RealmXF.Views
 {
@@ -10,7 +11,7 @@ namespace RealmXF.Views
         public HomePage()
         {
             InitializeComponent();
-            
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             BindingContext = new HomePageViewModel();
         }
     }

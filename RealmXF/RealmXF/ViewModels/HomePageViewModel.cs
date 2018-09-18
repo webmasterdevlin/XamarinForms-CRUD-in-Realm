@@ -3,9 +3,12 @@ using RealmXF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace RealmXF.ViewModels
 {
@@ -74,6 +77,7 @@ namespace RealmXF.ViewModels
                 _realmDb.Remove(recipe);
                 transact.Commit();
             }
+
             Recipes.Remove(recipe);
         }
     }
